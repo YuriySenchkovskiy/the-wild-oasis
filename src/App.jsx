@@ -11,6 +11,7 @@ import GlobalStyles from "./styles/GlobalStyles.js";
 import AppLayout from "./ui/AppLayout.jsx";
 
 function App () {
+
     return (
         <>
             <GlobalStyles/>
