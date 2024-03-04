@@ -9,18 +9,10 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {createCabin} from "../../services/apiCabins.js";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow.jsx";
-import PropTypes from "prop-types";
 
-function CreateCabinForm({cabinToEdit = {}}) {
-  const {id: editId, ...editValues} = cabinToEdit;
-  const isEditSession = Boolean(editId);
-    const {register, handleSubmit, reset, getValues, formState} = useForm(
-        {
-            defaultValues: isEditSession ? editValues : {}
-        }
-    );
-
+function CreateCabinForm() {
   const queryClient = useQueryClient();
+  const {register, handleSubmit, reset, getValues, formState} = useForm();
   const {errors} = formState;
     // eslint-disable-next-line no-unused-vars
   const {mutate, isLoading: isCreating} = useMutation({
@@ -111,9 +103,5 @@ function CreateCabinForm({cabinToEdit = {}}) {
     </Form>
   );
 }
-
-CreateCabinForm.propTypes = {
-    cabinToEdit: PropTypes.object,
-};
 
 export default CreateCabinForm;
