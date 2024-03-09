@@ -1,5 +1,38 @@
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
+import {PAGE_SIZE} from "../utils/constants.js";
+
+// eslint-disable-next-line no-unused-vars
+export async function getBookings({filter, sortBy, page}) {
+  let query = supabase
+      .from('bookings')
+      .select('*, cabins(name), guests(fullName, email)',
+          {count: "exact"}
+      );
+
+  // filter
+  if(filter) query = query[filter.method || 'eq'](filter.field, filter.value);
+
+  // sort
+  if(sortBy) query = query.order(sortBy.field, {ascending: sortBy.direction === 'asc'});
+
+  //pagination
+  if(page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  let { data, error, count: responseCount } = await query;
+  const count = responseCount ? parseInt(responseCount, 10) : null;
+
+  if(error) {
+    console.error(error);
+    throw new Error('Bookings could not be loaded');
+  }
+
+  return {data, count};
+}
 
 export async function getBooking(id) {
   const { data, error } = await supabase

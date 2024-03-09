@@ -20,6 +20,7 @@ const Label = styled.span`
   }
 `;
 
+// eslint-disable-next-line react/prop-types
 function DataItem({ icon, label, children }) {
   return (
     <StyledDataItem>
