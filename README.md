@@ -1,4 +1,4 @@
-# The Wild Oasis Hotel Management App
+# Hotel Management App
 
 Welcome to the GitHub repository for The Wild Oasis Hotel Management App - your all-in-one solution for managing a bustling hotel's daily operations.
 <img width="1537" alt="image" src="https://github.com/YuriySenchkovskiy/the-wild-oasis/assets/69895797/aeb965c8-4a20-4764-9e3a-742e8db12a33">
